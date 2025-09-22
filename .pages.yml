@@ -3,7 +3,7 @@ content:
   - name: posts
     label: Posts
     type: collection
-    path: 'app/posts'
+    path: 'content/posts'
     view:
       fields: [ title, published, date ]
     fields:
