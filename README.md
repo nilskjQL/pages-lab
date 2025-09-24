@@ -1,14 +1,18 @@
-# pages-lab
+# Pages Lab Blog
 
-A minimal Next.js site that statically renders Markdown posts from the /content/posts directory.
+This project is a statically generated blog website built with Next.js.
 
-Automated updates with n8n + GitHub App
-- An n8n workflow is used to trigger content changes (via webhook, schedule, or other events).
-- The workflow authenticates using a GitHub App installation and creates commits or pull requests against this repository.
-- It updates or adds Markdown files in /content/posts (and optional assets) so the site reflects new content automatically.
-- When changes land on main, the Next.js site rebuilds and the new/updated posts are available.
+## Project Structure
+- The `/app` directory contains:
+  - `layout.tsx` and `page.tsx` files for the site's layout and page structure.
+- The blog content is written in markdown files located in the `content/posts` directory.
+- The markdown files are managed using a git-based CMS called `pages cms`.
 
-Notes
-- Content lives in /content/posts as .md files with frontmatter.
-- App routes and layout are in /app.
-- This setup lets external systems (forms, CMS, automations) publish to the site through n8n without direct repo access.
+## Features
+- Statically generated pages for fast load times.
+- Login functionality that exposes a chat interface.
+
+## Usage
+- Edit markdown files in `content/posts` to add or update blog posts.
+- The CMS workflow is git-based, making content management simple and developer-friendly.
+
