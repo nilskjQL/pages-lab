@@ -1,11 +1,13 @@
-media: public/media
+media:
+  input: public/media
+  output: /media
 content:
   - name: posts
     label: Posts
     type: collection
-    path: 'content/posts'
+    path: "content/posts"
     view:
-      fields: [ title, published, date ]
+      fields: [title, published, date]
     fields:
       - name: published
         label: Published
