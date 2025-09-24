@@ -1,9 +1,9 @@
 ---
-title: "Test Article"
-date: "2025-09-23"
-description: "This is a test article added for demonstration and testing purposes."
+public: true
+date: 2024-04-27
+title: Hello world!
 ---
 
-# Test Article
+# Hello world!
 
-This is a test article content for the NextJS blog website. It is statically generated from markdown and managed by the pages CMS.
+This is my first blog post on this site, written in markdown.
