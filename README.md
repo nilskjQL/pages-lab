@@ -6,4 +6,4 @@ title: Hello world!
 
 # Hello world!
 
-This is my first blog post on this site, written in markdown.
+this is **markdown** _text_
