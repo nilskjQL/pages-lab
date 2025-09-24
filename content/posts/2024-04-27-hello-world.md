@@ -9,4 +9,4 @@ this is **markdown** _text_
 
 Here's an updated line to demonstrate the post editing capability.
 
-![](/public/media/crop.png)
+![](/media/crop.png)
