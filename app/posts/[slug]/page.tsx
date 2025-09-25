@@ -20,8 +20,8 @@ export default async function PostPage({
   const { slug } = await params;
   const post = await getPostBySlug(slug);
 
-  // Derive a safe Date instance (frontmatter may parse as Date or string)
-  const date = new Date((post.date as unknown) as string);
+  // Safe date instance (frontmatter may parse as Date or string)
+  const date = new Date(String(post.date));
   const formattedDate = new Intl.DateTimeFormat("en", { dateStyle: "medium" }).format(
     date,
   );
@@ -29,7 +29,7 @@ export default async function PostPage({
   // Basic reading time estimation from HTML text content
   const text = post.contentHtml
     .replace(/<[^>]+>/g, " ")
-    .replace(/&[a-z#0-9]+;/gi, " ")
+    .replace(/&[a-z0-9]+;/gi, " ")
     .replace(/\s+/g, " ")
     .trim();
   const words = text ? text.split(" ").length : 0;
@@ -42,36 +42,39 @@ export default async function PostPage({
   const next = idx >= 0 && idx < all.length - 1 ? all[idx + 1] : null;
 
   return (
-    <section className="pb-12">
-      <div className="bg-gradient-to-b from-neutral-50 to-transparent border-b">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <Link href="/" className="text-sm text-gray-600 hover:text-gray-900">
-            ← Back to home
-          </Link>
-          <h1 className="mt-3 text-3xl sm:text-4xl font-semibold tracking-tight">
-            {post.title}
-          </h1>
-          <div className="mt-3 flex flex-wrap items-center gap-x-4 text-sm text-gray-600">
-            <time dateTime={date.toISOString()}>{formattedDate}</time>
-            <span aria-hidden>•</span>
-            <span>{readingTime} min read</span>
-          </div>
+    <main className="min-h-screen bg-gradient-to-r from-cyan-900 via-blue-900 to-purple-900 text-white">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16">
+        {/* Back link + title */}
+        <Link href="/" className="text-sm text-indigo-300 hover:text-white">
+          ← Back to home
+        </Link>
+
+        <h1 className="mt-6 text-4xl sm:text-5xl font-bold tracking-wide">
+          {post.title}
+        </h1>
+
+        <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-indigo-300">
+          <time dateTime={date.toISOString()}>{formattedDate}</time>
+          <span aria-hidden>•</span>
+          <span>{readingTime} min read</span>
         </div>
-      </div>
 
-      <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-        <div
-          className="prose prose-neutral dark:prose-invert prose-img:rounded-lg"
-          dangerouslySetInnerHTML={{ __html: post.contentHtml }}
-        />
+        {/* Content */}
+        <article className="mt-10 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm shadow-xl">
+          <div
+            className="prose prose-invert max-w-none px-5 sm:px-7 lg:px-10 py-8"
+            dangerouslySetInnerHTML={{ __html: post.contentHtml }}
+          />
+        </article>
 
-        <hr className="my-10 border-neutral-200" />
+        <hr className="my-10 border-indigo-500/20" />
 
-        <nav className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between text-sm">
+        {/* Prev/Next */}
+        <nav className="grid sm:flex items-center justify-between gap-4 text-sm text-indigo-300">
           {prev ? (
             <Link
               href={`/posts/${prev.slug}`}
-              className="group inline-flex items-center gap-2 text-gray-700 hover:text-gray-900"
+              className="group inline-flex items-center gap-2 hover:text-white transition-colors"
             >
               <span className="transition-transform group-hover:-translate-x-0.5">←</span>
               <span className="line-clamp-1">Previous: {prev.title}</span>
@@ -79,10 +82,11 @@ export default async function PostPage({
           ) : (
             <span />
           )}
+
           {next ? (
             <Link
               href={`/posts/${next.slug}`}
-              className="group inline-flex items-center gap-2 text-gray-700 hover:text-gray-900 self-end sm:self-auto"
+              className="group inline-flex items-center gap-2 hover:text-white transition-colors self-end sm:self-auto"
             >
               <span className="line-clamp-1">Next: {next.title}</span>
               <span className="transition-transform group-hover:translate-x-0.5">→</span>
@@ -91,7 +95,7 @@ export default async function PostPage({
             <span />
           )}
         </nav>
-      </article>
-    </section>
+      </div>
+    </main>
   );
 }
