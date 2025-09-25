@@ -14,6 +14,14 @@ Gothenburg is quickly becoming a vibrant hub for artificial intelligence researc
 - Gothenburg University has launched new research programs dedicated to machine learning and AI ethics.
 - Collaborative projects between industry and academia are gaining momentum, fostering an ecosystem of knowledge sharing and innovation.
 
+
+       .-"""-.
+      / .===. \
+      \/ 6 6 \/
+      ( \___/ )
+ ___ooo__V__ooo___
+
+
 ## Events
 
 - The annual Gothenburg AI Summit will take place in November, featuring speakers from leading AI companies and research centers.
