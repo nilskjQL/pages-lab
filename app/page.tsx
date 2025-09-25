@@ -24,7 +24,7 @@ export default async function HomePage() {
             <span className="text-sm text-indigo-300">
               {post.date.toLocaleDateString()}
             </span>
-            <p className="mt-2 text-indigo-100">{post.description}</p>
+            <p className="mt-2 text-indigo-100">blabal</p>
           </li>
         ))}
       </ul>
