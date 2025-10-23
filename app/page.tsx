@@ -9,7 +9,7 @@ export default async function HomePage() {
       <h1 className="text-5xl font-bold mb-12 text-center tracking-wide">
         Techy & Chill Blog Posts
       </h1>
-      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {posts.map((post) => (
           <li key={post.slug}>
             <Link
