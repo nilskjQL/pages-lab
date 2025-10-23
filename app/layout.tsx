@@ -25,9 +25,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variables} antialiased`}
       >
-        {children}
+        <div className="relative z-10">{children}</div>
+
+        {/* Decorative rocket animation overlay */}
+        <div className="rocket-sky" aria-hidden="true">
+          <span className="rocket r1">🚀</span>
+          <span className="rocket r2">🚀</span>
+          <span className="rocket r3">🚀</span>
+          <span className="rocket r4">🚀</span>
+        </div>
       </body>
     </html>
   );
