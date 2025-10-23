@@ -11,20 +11,20 @@ export default async function HomePage() {
       </h1>
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {posts.map((post) => (
-          <li
-            key={post.slug}
-            className="bg-gradient-to-br from-purple-700 via-blue-700 to-cyan-700 rounded-xl p-6 shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl"
-          >
+          <li key={post.slug}>
             <Link
               href={`/posts/${post.slug}`}
-              className="block text-lg font-semibold mb-2 hover:underline"
+              className="group block h-full rounded-xl bg-gradient-to-br from-purple-700 via-blue-700 to-cyan-700 p-6 shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+              aria-label={`Read post: ${post.title}`}
             >
-              {post.title}
+              <h2 className="text-lg font-semibold mb-2 underline-offset-4 group-hover:underline">
+                {post.title}
+              </h2>
+              <span className="text-sm text-indigo-300">
+                {post.date.toLocaleDateString()}
+              </span>
+              <p className="mt-2 text-indigo-100">blabal</p>
             </Link>
-            <span className="text-sm text-indigo-300">
-              {post.date.toLocaleDateString()}
-            </span>
-            <p className="mt-2 text-indigo-100">blabal</p>
           </li>
         ))}
       </ul>
