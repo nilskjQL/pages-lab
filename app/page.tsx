@@ -15,8 +15,8 @@ export default async function HomePage() {
         Queenslab
       </h1>
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {posts.map((post) => (
-          <li key={post.slug}>
+        {posts.map((post, i) => (
+          <li key={post.slug} className="crash-in" style={{ animationDelay: `${i * 90}ms` }}>
             <Link
               href={`/posts/${post.slug}`}
               className="group block h-full rounded-xl bg-gradient-to-br from-purple-700 via-blue-700 to-cyan-700 p-6 shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
