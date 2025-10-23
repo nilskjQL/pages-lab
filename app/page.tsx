@@ -21,6 +21,21 @@ export default async function HomePage() {
           <span aria-hidden="true">🚀</span>
         </span>
       </h1>
+
+      <div className="w-full max-w-3xl mx-auto mb-10">
+        <div className="relative pt-[56.25%] rounded-xl overflow-hidden shadow-lg">
+          <iframe
+            className="absolute top-0 left-0 w-full h-full"
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&playsinline=1&controls=0&rel=0&loop=1&playlist=dQw4w9WgXcQ"
+            title="Rick Astley - Never Gonna Give You Up"
+            frameBorder="0"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowFullScreen
+            loading="lazy"
+          />
+        </div>
+      </div>
+
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {posts.map((post, i) => (
           <li key={post.slug} className="crash-in" style={{ animationDelay: `${i * 90}ms` }}>
@@ -33,7 +48,7 @@ export default async function HomePage() {
                 {post.title}
               </h2>
               <span className="text-sm text-indigo-300">
-                {post.date.toLocaleDateString()}
+                {post.date.toLocalDateString()}
               </span>
               <p className="mt-2 text-indigo-100">blabal</p>
             </Link>
