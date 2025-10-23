@@ -59,3 +59,37 @@ body {
     opacity: 1;
   }
 }
+
+/* Rocket overlay styles */
+.rocket-sky {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.rocket {
+  position: absolute;
+  font-size: 22px;
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.35));
+  animation: fly 8s linear infinite;
+  opacity: 0.9;
+}
+
+/* different lanes and timings */
+.r1 { left: 10%; bottom: -40px; animation-delay: 0s; }
+.r2 { left: 40%; bottom: -60px; animation-delay: 2s; }
+.r3 { left: 70%; bottom: -50px; animation-delay: 4s; }
+.r4 { left: 85%; bottom: -70px; animation-delay: 6s; }
+
+@keyframes fly {
+  0% { transform: translate(0, 0) rotate(60deg); opacity: 0; }
+  10% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translate(-40vw, -120vh) rotate(60deg); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rocket { animation: none; }
+}
