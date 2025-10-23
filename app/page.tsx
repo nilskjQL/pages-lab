@@ -1,5 +1,10 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllPosts, Post } from "@/lib/posts";
+
+export const metadata: Metadata = {
+  title: "Queenslab",
+};
 
 export default async function HomePage() {
   const posts: Post[] = await getAllPosts();
@@ -7,7 +12,7 @@ export default async function HomePage() {
   return (
     <main className="min-h-screen bg-gradient-to-r from-cyan-900 via-blue-900 to-purple-900 text-white p-10 font-sans">
       <h1 className="text-5xl font-bold mb-12 text-center tracking-wide">
-        Techy & Chill Blog Posts
+        Queenslab
       </h1>
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {posts.map((post) => (
