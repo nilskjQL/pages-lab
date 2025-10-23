@@ -10,9 +10,9 @@ export default async function HomePage() {
   const posts: Post[] = await getAllPosts();
 
   return (
-    <main className="min-h-screen bg-gradient-to-r from-red-700 to-blue-700 text-white p-10 font-sans">
+    <main className="min-h-screen bg-gradient-to-r from-cyan-900 via-blue-900 to-purple-900 text-white p-10 font-sans">
       <h1 className="text-5xl font-bold mb-12 text-center tracking-wide">
-        Queenslab
+        Queenslab <span className="ml-2" aria-hidden="true">🚀</span>
       </h1>
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {posts.map((post, i) => (
