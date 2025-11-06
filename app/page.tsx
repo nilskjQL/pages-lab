@@ -9,9 +9,10 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   const posts: Post[] = await getAllPosts();
 
-  // Always use the current page title and append a rocket emoji
-  const pageTitle =
-    typeof metadata.title === "string" ? metadata.title : "Home";
+  // Intentional TypeScript error to break the build
+  const broken: number = "this will break the build";
+
+  const pageTitle = typeof metadata.title === "string" ? metadata.title : "Home";
 
   return (
     <main className="min-h-screen bg-gradient-to-r from-red-700 to-blue-700 text-white p-10 font-sans">
@@ -47,10 +48,8 @@ export default async function HomePage() {
               <h2 className="text-lg font-semibold mb-2 underline-offset-4 group-hover:underline">
                 {post.title}
               </h2>
-              <span className="text-sm text-indigo-300">
-                {post.date.toLocaleDateString()}
-              </span>
-              <p className="mt-2 text-indigo-100">blabal</p>
+              <span className="text-sm text-indigo-300">{post.date.toLocaleDateString()}</span>
+              <p className="mt-2 text-indigo-100">{post.excerpt}</p>
             </Link>
           </li>
         ))}
