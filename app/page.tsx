@@ -9,8 +9,7 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   const posts: Post[] = await getAllPosts();
 
-  // Intentional TypeScript error to break the build
-  const broken: string = "this will break the build";
+  // Intentionally removed the unused/broken variable
 
   const pageTitle = typeof metadata.title === "string" ? metadata.title : "Home";
 
@@ -42,14 +41,14 @@ export default async function HomePage() {
           <li key={post.slug} className="crash-in" style={{ animationDelay: `${i * 90}ms` }}>
             <Link
               href={`/posts/${post.slug}`}
-              className="group block h-full rounded-xl bg-gradient-to-br from-purple-700 via-blue-700 to-cyan-700 p-6 shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+              className="group block h-full rounded-xl bg-gradient-to-br from-purple-700 via-blue-700 to-cyan-700 p-6 shadow-lg transition-transform hover:scale-[1.05] hover:shadow-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
               aria-label={`Read post: ${post.title}`}
             >
               <h2 className="text-lg font-semibold mb-2 underline-offset-4 group-hover:underline">
                 {post.title}
               </h2>
               <span className="text-sm text-indigo-300">{post.date.toLocaleDateString()}</span>
-              <p className="mt-2 text-sm">{post.excerpt}</p>
+              <p className="mt-2 text-sm" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
             </Link>
           </li>
         ))}
