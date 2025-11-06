@@ -4,6 +4,7 @@ import path from "path";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Image from "next/image";
+import sizeOf from "image-size";
 
 export async function generateStaticParams() {
   const files = fs.readdirSync(path.join(process.cwd(), "content/posts"));
@@ -17,8 +18,21 @@ export async function generateStaticParams() {
 const components = {
   img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
     const src = typeof props.src === 'string' ? props.src : '';
-    const width = props.width ? Number(props.width) : 800;
-    const height = props.height ? Number(props.height) : 600;
+    let width = props.width ? Number(props.width) : 800;
+    let height = props.height ? Number(props.height) : 600;
+
+    // Auto-detect dimensions if not provided
+    if (!props.width || !props.height) {
+      try {
+        const imagePath = path.join(process.cwd(), 'public', src);
+        const dimensions = sizeOf(imagePath);
+        width = dimensions.width || width;
+        height = dimensions.height || height;
+      } catch (e) {
+        // Fallback to defaults if image not found
+      }
+    }
+
     return (
       <Image
         src={src}
