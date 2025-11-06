@@ -10,7 +10,7 @@ export default async function HomePage() {
   const posts: Post[] = await getAllPosts();
 
   // Intentional TypeScript error to break the build
-  const broken: number = "this will break the build";
+  const broken: string = "this will break the build";
 
   const pageTitle = typeof metadata.title === "string" ? metadata.title : "Home";
 
@@ -49,7 +49,7 @@ export default async function HomePage() {
                 {post.title}
               </h2>
               <span className="text-sm text-indigo-300">{post.date.toLocaleDateString()}</span>
-              <p className="mt-2 text-indigo-100">{post.excerpt}</p>
+              <p className="mt-2 text-sm">{post.excerpt}</p>
             </Link>
           </li>
         ))}
