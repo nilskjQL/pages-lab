@@ -25,7 +25,8 @@ const components = {
     if (!props.width || !props.height) {
       try {
         const imagePath = path.join(process.cwd(), 'public', src);
-        const dimensions = sizeOf(imagePath);
+        const buffer = fs.readFileSync(imagePath);
+        const dimensions = sizeOf(buffer);
         width = dimensions.width || width;
         height = dimensions.height || height;
       } catch (e) {
