@@ -14,7 +14,6 @@
     "@next/mdx": "^16.0.1",
     "@types/mdx": "^2.0.13",
     "gray-matter": "^4.0.3",
-    "image-size": "^2.0.2",
     "next": "15.5.3",
     "next-mdx-remote": "^5.0.0",
     "react": "19.1.0",

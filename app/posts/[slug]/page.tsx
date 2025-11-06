@@ -4,7 +4,6 @@ import path from "path";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Image from "next/image";
-import sizeOf from "image-size";
 
 export async function generateStaticParams() {
   const files = fs.readdirSync(path.join(process.cwd(), "content/posts"));
@@ -17,31 +16,18 @@ export async function generateStaticParams() {
 
 const components = {
   img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
-    const src = typeof props.src === 'string' ? props.src : '';
-    let width = props.width ? Number(props.width) : 800;
-    let height = props.height ? Number(props.height) : 600;
-
-    // Auto-detect dimensions if not provided
-    if (!props.width || !props.height) {
-      try {
-        const imagePath = path.join(process.cwd(), 'public', src);
-        const buffer = fs.readFileSync(imagePath);
-        const dimensions = sizeOf(buffer);
-        width = dimensions.width || width;
-        height = dimensions.height || height;
-      } catch (e) {
-        // Fallback to defaults if image not found
-      }
-    }
+    const src = typeof props.src === "string" ? props.src : "";
+    const width = props.width ? Number(props.width) : 1200;
+    const height = props.height ? Number(props.height) : 800;
 
     return (
       <Image
         src={src}
         width={width}
         height={height}
-        style={{ width: "auto", height: "auto", maxWidth: "100%" }}
+        style={{ width: "100%", height: "auto" }}
         alt={props.alt || ""}
-        quality={100}
+        quality={95}
       />
     );
   },
@@ -57,9 +43,9 @@ export default async function PostPage({
 
   // Safe date instance (frontmatter may parse as Date or string)
   const date = new Date(String(post.date));
-  const formattedDate = new Intl.DateTimeFormat("en", { dateStyle: "medium" }).format(
-    date,
-  );
+  const formattedDate = new Intl.DateTimeFormat("en", {
+    dateStyle: "medium",
+  }).format(date);
 
   // Basic reading time estimation from content
   const text = post.content
@@ -109,7 +95,9 @@ export default async function PostPage({
               href={`/posts/${prev.slug}`}
               className="group inline-flex items-center gap-2 hover:text-white transition-colors"
             >
-              <span className="transition-transform group-hover:-translate-x-0.5">←</span>
+              <span className="transition-transform group-hover:-translate-x-0.5">
+                ←
+              </span>
               <span className="line-clamp-1">Previous: {prev.title}</span>
             </Link>
           ) : (
@@ -122,7 +110,9 @@ export default async function PostPage({
               className="group inline-flex items-center gap-2 hover:text-white transition-colors self-end sm:self-auto"
             >
               <span className="line-clamp-1">Next: {next.title}</span>
-              <span className="transition-transform group-hover:translate-x-0.5">→</span>
+              <span className="transition-transform group-hover:translate-x-0.5">
+                →
+              </span>
             </Link>
           ) : (
             <span />

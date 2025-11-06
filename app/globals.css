@@ -48,7 +48,7 @@ body {
   opacity: 0;
   animation-name: crash-in;
   animation-duration: 700ms;
-  animation-timing-function: cubic-bezier(.2,.8,.2,1);
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
   animation-fill-mode: forwards;
   will-change: transform, opacity;
 }
@@ -72,24 +72,52 @@ body {
 .rocket {
   position: absolute;
   font-size: 22px;
-  filter: drop-shadow(0 0 6px rgba(255,255,255,0.35));
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.35));
   animation: fly 8s linear infinite;
   opacity: 0.98;
 }
 
 /* different lanes and timings */
-.r1 { left: 10%; bottom: -40px; animation-delay: 0s; }
-.r2 { left: 40%; bottom: -60px; animation-delay: 2s; }
-.r3 { left: 70%; bottom: -50px; animation-delay: 4s; }
-.r4 { left: 85%; bottom: -70px; animation-delay: 6s; }
+.r1 {
+  left: 10%;
+  bottom: -40px;
+  animation-delay: 0s;
+}
+.r2 {
+  left: 40%;
+  bottom: -60px;
+  animation-delay: 2s;
+}
+.r3 {
+  left: 70%;
+  bottom: -50px;
+  animation-delay: 4s;
+}
+.r4 {
+  left: 85%;
+  bottom: -70px;
+  animation-delay: 6s;
+}
 
 @keyframes fly {
-  0% { transform: translate(0, 0) rotate(60deg); opacity: 0; }
-  10% { opacity: 1; }
-  80% { opacity: 1; }
-  100% { transform: translate(-40vw, -120vh) rotate(60deg); opacity: 0; }
+  0% {
+    transform: translate(0, 0) rotate(60deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-40vw, -120vh) rotate(60deg);
+    opacity: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .rocket { animation: none; }
+  .rocket {
+    animation: none;
+  }
 }
