@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ff0000;
+  --background: #ffff00;
   --foreground: #171717;
 }
 
@@ -14,7 +14,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #ff0000;
+    --background: #ffff00;
     --foreground: #ededed;
   }
 }
@@ -74,7 +74,7 @@ body {
   font-size: 22px;
   filter: drop-shadow(0 0 6px rgba(255,255,255,0.35));
   animation: fly 8s linear infinite;
-  opacity: 0.9;
+  opacity: 0.98;
 }
 
 /* different lanes and timings */
