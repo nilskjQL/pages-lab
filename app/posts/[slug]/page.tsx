@@ -2,15 +2,35 @@ import { getPostBySlug, getAllPosts } from "@/lib/posts";
 import fs from "fs";
 import path from "path";
 import Link from "next/link";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import Image from "next/image";
 
 export async function generateStaticParams() {
   const files = fs.readdirSync(path.join(process.cwd(), "content/posts"));
   return files
-    .filter((file) => file.endsWith(".md"))
+    .filter((file) => file.endsWith(".mdx"))
     .map((file) => ({
-      slug: file.replace(/\.md$/, ""),
+      slug: file.replace(/\.mdx$/, ""),
     }));
 }
+
+const components = {
+  img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
+    const src = typeof props.src === 'string' ? props.src : '';
+    const width = props.width ? Number(props.width) : 800;
+    const height = props.height ? Number(props.height) : 600;
+    return (
+      <Image
+        src={src}
+        width={width}
+        height={height}
+        style={{ width: "auto", height: "auto", maxWidth: "100%" }}
+        alt={props.alt || ""}
+        quality={100}
+      />
+    );
+  },
+};
 
 export default async function PostPage({
   params,
@@ -26,10 +46,9 @@ export default async function PostPage({
     date,
   );
 
-  // Basic reading time estimation from HTML text content
-  const text = post.contentHtml
-    .replace(/<[^>]+>/g, " ")
-    .replace(/&[a-z0-9]+;/gi, " ")
+  // Basic reading time estimation from content
+  const text = post.content
+    .replace(/[#*_`\[\]()]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
   const words = text ? text.split(" ").length : 0;
@@ -61,10 +80,9 @@ export default async function PostPage({
 
         {/* Content */}
         <article className="mt-10 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm shadow-xl">
-          <div
-            className="prose prose-invert max-w-none px-5 sm:px-7 lg:px-10 py-8"
-            dangerouslySetInnerHTML={{ __html: post.contentHtml }}
-          />
+          <div className="prose prose-invert max-w-none px-5 sm:px-7 lg:px-10 py-8">
+            <MDXRemote source={post.content} components={components} />
+          </div>
         </article>
 
         <hr className="my-10 border-indigo-500/20" />

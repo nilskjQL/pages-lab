@@ -44,7 +44,7 @@ export default async function HomePage() {
             >
               <h2 className="text-lg font-semibold mb-2 group-hover:underline">{post.title}</h2>
               <span className="text-sm text-indigo-300">{new Date(post.date).toLocaleDateString()}</span>
-              <div className="mt-2 text-sm" dangerouslySetInnerHTML={{ __html: post.contentHtml ?? "" }} />
+              <p className="mt-2 text-sm line-clamp-3">{post.content.substring(0, 150)}...</p>
             </Link>
           </li>
         ))}
