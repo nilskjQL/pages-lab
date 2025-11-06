@@ -14,7 +14,7 @@ export default async function HomePage() {
   const pageTitle = typeof metadata.title === "string" ? metadata.title : "Home";
 
   return (
-    <main className="min-h-screen bg-gradient-to-r from-red-700 to-blue-700 text-white p-10 font-sans">
+    <main className="min-h-screen bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-200 text-gray-900 p-10 font-sans">
       <h1 className="text-5xl font-bold mb-12 text-center tracking-wide">
         <span className="inline-flex items-center gap-2">
           <span>{pageTitle}</span>
@@ -26,7 +26,7 @@ export default async function HomePage() {
         <div className="relative pt-[56.25%] rounded-xl overflow-hidden shadow-lg">
           <iframe
             className="absolute top-0 left-0 w-full h-full"
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&playsinline=1&controls=0&rel=0&loop=1&playlist=dQw4w9WgXcQ"
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ/?autoplay=1&mute=1&playsinline=1&controls=0&rel=0&loop=1&playlist=dQw4w9WgXcQ"
             title="Rick Astley - Never Gonna Give You Up"
             frameBorder="0"
             allow="autoplay; encrypted-media; picture-in-picture"
@@ -41,14 +41,13 @@ export default async function HomePage() {
           <li key={post.slug} className="crash-in" style={{ animationDelay: `${i * 90}ms` }}>
             <Link
               href={`/posts/${post.slug}`}
-              className="group block h-full rounded-xl bg-gradient-to-br from-purple-700 via-blue-700 to-cyan-700 p-6 shadow-lg transition-transform hover:scale-[1.05] hover:shadow-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-              aria-label={`Read post: ${post.title}`}
+              className={`group block h-full rounded-xl bg-gradient-to-br from-yellow-400 via-yellow-300 to-yellow-200 p-6 shadow-lg aria-label={` + "`Read post: ${post.title}`" + `}`}
             >
-              <h2 className="text-lg font-semibold mb-2 underline-offset-4 group-hover:underline">
+              <h2 className="text-lg font-semibold mb-2 group-hover:underline">
                 {post.title}
               </h2>
               <span className="text-sm text-indigo-300">{post.date.toLocaleDateString()}</span>
-              <p className="mt-2 text-sm" dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
+              <p className="mt-2 text-sm">{__html: post.contentHtml}</p>
             </Link>
           </li>
         ))}
