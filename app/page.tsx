@@ -9,8 +9,6 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   const posts: Post[] = await getAllPosts();
 
-  // Intentionally removed the unused/broken variable
-
   const pageTitle = typeof metadata.title === "string" ? metadata.title : "Home";
 
   return (
@@ -41,13 +39,12 @@ export default async function HomePage() {
           <li key={post.slug} className="crash-in" style={{ animationDelay: `${i * 90}ms` }}>
             <Link
               href={`/posts/${post.slug}`}
-              className={`group block h-full rounded-xl bg-gradient-to-br from-yellow-400 via-yellow-300 to-yellow-200 p-6 shadow-lg aria-label={` + "`Read post: ${post.title}`" + `}`}
+              className="group block h-full rounded-xl bg-gradient-to-br from-yellow-400 via-yellow-300 to-yellow-200 p-6 shadow-lg"
+              aria-label={`Read post: ${post.title}`}
             >
-              <h2 className="text-lg font-semibold mb-2 group-hover:underline">
-                {post.title}
-              </h2>
-              <span className="text-sm text-indigo-300">{post.date.toLocaleDateString()}</span>
-              <p className="mt-2 text-sm">{__html: post.contentHtml}</p>
+              <h2 className="text-lg font-semibold mb-2 group-hover:underline">{post.title}</h2>
+              <span className="text-sm text-indigo-300">{new Date(post.date).toLocaleDateString()}</span>
+              <div className="mt-2 text-sm" dangerouslySetInnerHTML={{ __html: post.contentHtml ?? "" }} />
             </Link>
           </li>
         ))}
