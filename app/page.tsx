@@ -12,11 +12,11 @@ export default async function HomePage() {
   const pageTitle = typeof metadata.title === "string" ? metadata.title : "Home";
 
   return (
-    <main className="min-h-screen bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-200 text-gray-900 p-10 font-sans">
+    <main className="min-h-screen bg-transparent p-10 font-sans">
       <h1 className="text-5xl font-bold mb-12 text-center tracking-wide">
         <span className="inline-flex items-center gap-2">
           <span>{pageTitle}</span>
-          <span aria-hidden="true">🚀</span>
+          <span aria-hidden="true">🌐</span>
         </span>
       </h1>
 
@@ -39,7 +39,7 @@ export default async function HomePage() {
           <li key={post.slug} className="crash-in" style={{ animationDelay: `${i * 90}ms` }}>
             <Link
               href={`/posts/${post.slug}`}
-              className="group block h-full rounded-xl bg-gradient-to-br from-yellow-400 via-yellow-300 to-yellow-200 p-6 shadow-lg"
+              className="group block h-full rounded-xl bg-transparent p-6 shadow-lg"
               aria-label={`Read post: ${post.title}`}
             >
               <h2 className="text-lg font-semibold mb-2 group-hover:underline">{post.title}</h2>
