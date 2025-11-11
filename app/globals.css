@@ -1,20 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffff00;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --background: #008080;
+  --foreground: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #ffff00;
+    --background: #005f5f;
     --foreground: #ededed;
   }
 }
@@ -108,7 +101,8 @@ body {
     opacity: 1;
   }
   80% {
-    opacity: 1;
+    transform: translate(-40vw, -120vh) rotate(60deg);
+    opacity: 0;
   }
   100% {
     transform: translate(-40vw, -120vh) rotate(60deg);
